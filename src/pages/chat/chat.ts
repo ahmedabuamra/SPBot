@@ -65,19 +65,6 @@ export class Chat {
     this.scrollToBottom();
   }
 
-  /**
-   * @name getMsg
-   * @returns {Promise<ChatMessage[]>}
-   */
-  getMsg() {
-    // Get mock message list
-    return this.chatService
-    .getMsgList()
-    .subscribe(res => {
-      this.msgList = res;
-      this.scrollToBottom();
-    });
-  }
 
   /**
    * @name sendMsg

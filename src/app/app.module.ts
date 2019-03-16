@@ -9,6 +9,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { EmojiProvider } from '../providers/emoji';
 import { HttpClientModule } from "@angular/common/http";
 import { ChatModule } from '../pages/chat/chat.module';
+import { Backend } from '../providers/backend';
+import { Http, HttpModule } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
+import { Dialogflow } from '../providers/dialogflow';
 
 
 @NgModule({
@@ -18,6 +22,7 @@ import { ChatModule } from '../pages/chat/chat.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     ChatModule
   ],
@@ -29,7 +34,10 @@ import { ChatModule } from '../pages/chat/chat.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EmojiProvider
+    EmojiProvider,
+    HTTP,
+    Backend,
+    Dialogflow
   ]
 })
 export class AppModule {}

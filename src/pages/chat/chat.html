@@ -1,7 +1,9 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{toUser.name}}</ion-title>
+  <ion-navbar color="primary">
+    <div text-center>
+      <ion-title> SPBot </ion-title>
+    </div>
   </ion-navbar>
 
 </ion-header>
@@ -18,12 +20,12 @@
       <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
       <div class="msg-detail">
         <div class="msg-info">
-          <p>
-            {{msg.userName}}&nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}</p>
+          <p>{{msg.userName}}</p>
+            <!-- &nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}</p> -->
         </div>
         <div class="msg-content">
           <span class="triangle"></span>
-          <p class="line-breaker ">{{msg.message}}</p>
+          <div [innerHtml]="msg.message" ></div>
         </div>
       </div>
     </div>
