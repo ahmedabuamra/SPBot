@@ -88,10 +88,17 @@ export class ChatService {
       .then(() => {
 
         //sends data to dialogFlow to get context
-        this.dialogflow.sendText(msg.message).then(() => { }).catch(() => { });
+        this.dialogflow.sendText(msg.message).then(() => {
 
+
+        /* Based on response from dialog flow */
         // this.botRespond_math(msg)
         // this.botRespond_youtube(msg);
+
+
+
+         }).catch(() => { });
+
       });
   }
 
