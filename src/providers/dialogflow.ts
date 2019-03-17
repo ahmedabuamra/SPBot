@@ -5,8 +5,11 @@ import 'rxjs/Rx';
 @Injectable()
 export class Dialogflow {
 
-    constructor(private http: HTTP) { }
+    func: string="";
+    topic: string="";
+    speech: string = "";
 
+    constructor(private http: HTTP) { }
 
     sendText(msg: string) {
         let headers = {
@@ -18,10 +21,14 @@ export class Dialogflow {
         msg = msg.replace(" ", "%20");
         let url = 'https://api.dialogflow.com/v1/query?v=20150910&contexts=shop&lang=en&query='+msg+'&sessionId=spbot-71647';
 
-
         return this.http.get(url, {}, headers)
         .then((data: any) => {
-            console.log(data.data);
+            let resp = JSON.parse(data.data);
+            console.log(resp);
+            this.func = resp["result"]["metadata"]["intentName"];
+            this.topic = resp["result"]["parameters"]["LessonName"];
+            this.speech = resp["result"]["fulfillment"]["speech"];
+            console.log(this.func + " " + this.topic);
         }).catch((error) => {
             console.log(error);
         });

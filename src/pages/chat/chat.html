@@ -11,22 +11,23 @@
 <ion-content>
 
   <div class="message-wrap">
-
-    <div *ngFor="let msg of msgList"
-         class="message"
-         [class.left]=" msg.userId === toUser.id "
-         [class.right]=" msg.userId === user.id ">
+   
+    <div *ngFor="let msg of msgList" class="message" [class.left]=" msg.userId === toUser.id " [class.right]=" msg.userId === user.id ">
       <img class="user-img" [src]="msg.userAvatar" alt="" src="">
       <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
       <div class="msg-detail">
         <div class="msg-info">
           <p>{{msg.userName}}</p>
-            <!-- &nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}</p> -->
+          <!-- &nbsp;&nbsp;&nbsp;{{msg.time | relativeTime}}</p> -->
         </div>
         <div class="msg-content">
           <span class="triangle"></span>
           <div [innerHtml]="msg.message" ></div>
         </div>
+      </div>
+
+      <div *ngIf="msg.message == '<p> Circle Visualization: </p>'">
+        <iframe *ngIf="circleHTML" width="100%" height="200px" [src]="circleHTML"></iframe>
       </div>
     </div>
 
@@ -39,11 +40,7 @@
     <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
       <ion-icon name="md-happy"></ion-icon>
     </button>
-    <textarea #chat_input
-              placeholder="Text Input"
-              [(ngModel)]="editorMsg"
-              (keyup.enter)="sendMsg()"
-              (focusin)="onFocus()">
+    <textarea #chat_input placeholder="Text Input" [(ngModel)]="editorMsg" (keyup.enter)="sendMsg()" (focusin)="onFocus()">
     </textarea>
     <button ion-button clear icon-only item-right (click)="sendMsg()">
       <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>

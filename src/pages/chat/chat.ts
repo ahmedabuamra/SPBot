@@ -1,14 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { Events, Content } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat-service";
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @IonicPage()
 @Component({
   selector: 'page-chat',
   templateUrl: 'chat.html',
 })
-export class Chat {
+
+export class Chat implements OnInit {
 
   @ViewChild(Content) content: Content;
   @ViewChild('chat_input') messageInput: ElementRef;
@@ -18,9 +21,14 @@ export class Chat {
   editorMsg = '';
   showEmojiPicker = false;
 
+
+  circleHTML = null;
+
   constructor(navParams: NavParams,
               private chatService: ChatService,
-              private events: Events,) {
+              private events: Events,
+              private sanitizer: DomSanitizer) {
+
     // Get the navParams toUserId parameter
     this.toUser = {
       id: "210000198410281948",
@@ -33,19 +41,28 @@ export class Chat {
     });
   }
 
+  ngOnInit(){
+    this.circleHTML = this.trustURL();
+    console.log(this.circleHTML);
+  }
+
+  trustURL() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl("ui.html");
+  }
+
+
   ionViewWillLeave() {
     // unsubscribe
     this.events.unsubscribe('chat:received');
   }
 
-  ionViewDidEnter() {
-    //get message list
-    //this.getMsg();
-
+  ionViewDidEnter() {    
     // Subscribe to received  new message events
     this.events.subscribe('chat:received', msg => {
       this.pushNewMsg(msg);
-    })
+    });
+
+    this.chatService.chatStart();
   }
 
   onFocus() {
@@ -140,3 +157,4 @@ export class Chat {
     textarea.scrollTop = textarea.scrollHeight;
   }
 }
+
