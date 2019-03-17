@@ -27,6 +27,7 @@ export class Backend {
                 } else {
                     this.lastRecommendedVideo = null;
                 }
+                console.log(this.lastRecommendedVideo);
             }).catch((error) => {
                 console.log(error);
                 this.lastRecommendedVideo = null;

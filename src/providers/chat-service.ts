@@ -43,7 +43,7 @@ export class ChatService {
       console.log(video);
       let botmsg = "";
       if (video) {
-        botmsg = '<p class="line-breaker"> I recommend this video : <a href="https://www.youtube.com/watch?v=' + video["id"]["videoID"] + '">' + video["snippet"]["title"] + '</a>, It will help you understand this topic more</p>'
+        botmsg = '<p class="line-breaker"> I recommend this video : <a href="https://www.youtube.com/watch?v=' + video["id"]["videoId"] + '">' + video["snippet"]["title"] + '</a>, It will help you understand this topic more</p>'
       } else {
         botmsg = '<p class="line-breaker"> An error ocured 😔 try again </p>'
       }
