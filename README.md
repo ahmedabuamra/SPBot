@@ -2,12 +2,12 @@
 
 Study Partner Bot is an ionic application to help studens find resources, solve mathimatical equations and visualize geometric objects.
 
-## screenshot
+## Screenshot
 ![screenshot](https://github.com/ahmedabuamra/SPBot/blob/master/Screenshot%20from%202019-03-17%2015-31-12.png)
 
 
-## Technologies Used
-DialogFlow, Angular, Ionic 3, TypeScript
+## Technologies and Tools Used
+DialogFlow, Angular, Ionic, Javascript, TypeScript, HTM and CSS.
 
 
 
